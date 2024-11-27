@@ -1,1 +1,2 @@
 final_2_advanced_weather_prediction_model.h5 filter=lfs diff=lfs merge=lfs -text
+small2_weather_prediction_model.keras filter=lfs diff=lfs merge=lfs -text
