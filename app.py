@@ -41,18 +41,15 @@ class WeatherPipeline:
         self.output_days = 5
         
         try:
-            # Use absolute path with os.path.join and current directory
             base_dir = os.path.dirname(os.path.abspath(__file__))
-            model_path = os.path.join(base_dir, 'small2_weather_prediction_model.keras')
+            model_path = os.path.join(base_dir, 'small3_weather_prediction_model.keras')
             logger.info(f"Attempting to load model from: {model_path}")
             
-            # Check if model file exists with more detailed logging
             if not os.path.exists(model_path):
                 logger.error(f"Model file not found at path: {model_path}")
                 logger.error(f"Current directory contents: {os.listdir(base_dir)}")
                 raise FileNotFoundError(f"Model file not found at path: {model_path}")
             
-            # Load the model
             self.model = tf.keras.models.load_model(model_path)
             logger.info("Model loaded successfully!")
             
@@ -105,7 +102,6 @@ class WeatherPipeline:
 
 app = Flask(__name__)
 
-# Global pipeline initialization with more robust error handling
 pipeline = None
 try:
     logger.info("Initializing WeatherPipeline...")
@@ -148,3 +144,4 @@ def predict():
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     app.run(debug=True, host='0.0.0.0', port=port)
+    
